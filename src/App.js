@@ -14,16 +14,25 @@ function App() {
             <img width={18} height={18} src="/img/cart.svg" alt="cart"/>
             <span>100$</span>
           </li>
-          <li>
+          <li className="align-center">
             <img width={18} height={18} src="/img/user.png" alt="user"/>
           </li>
         </ul>
       </header>
       <div className="content p-40">
-        <h1 className="mb-40">All sneakers</h1>
+        <div className="d-flex align-center justify-between mb-40"> 
+          <h1>All sneakers</h1>
+          <div className="search-block d-flex">
+             <img src="/img/search.svg" alt="Search-icon"/>
+             <input placeholder="Search..."/>
+          </div>
+        </div>
         
         <div className="d-flex">
         <div className="card">
+          <div className="favorite">
+          <img src="img/liked.svg" alt="unliked-icon"/>
+          </div>
           <img width={133} height={122} src="/img/sneakers/1.jpg" alt="sneakers-1"/>
           <h5>Nike Blazer Mid Suede</h5>
           <div className="d-flex justify-between align-center">
