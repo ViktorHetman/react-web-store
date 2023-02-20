@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Card.module.scss'
 
-function Card({title, price, imageUrl}) {
-  const alertHandler = () => {
-    alert(title)
+function Card({title, price, imageUrl, favoriteToggleHandler}) {
+ 
+  const [isAdded, setIsAdded] = useState(false)
+
+  const addItemHandler = () => {
+    setIsAdded(!isAdded)
   }
 
   return (
     <div className={styles.card}>
-      <div className={styles.favorite}>
+      <div className={styles.favorite} onClick={favoriteToggleHandler}>
         <img src="img/unliked.svg" alt="unliked-icon" />
       </div>
       <img
@@ -23,9 +26,7 @@ function Card({title, price, imageUrl}) {
           <span>Price:</span>
           <b>{price} $</b>
         </div>
-        <button className={styles.button} onClick={alertHandler}>
-          <img width={11} height={11} src="/img/plus.svg" alt="Plus" />
-        </button>
+          <img className={styles.plus} onClick={addItemHandler} src={isAdded ? "/img/selected.svg" : "/img/plus.svg"} alt="Plus" />
       </div>
     </div>
   )

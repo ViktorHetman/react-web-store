@@ -11,6 +11,11 @@ const arr = [
 ]
 
 function App() {  
+
+  const favoriteToggleHandler = () => {
+    console.log('added to marks')
+  }
+
   return (
     <div className="wrapper clear">
       <Cart />
@@ -24,9 +29,9 @@ function App() {
           </div>
         </div>
         <div className="d-flex flex-wrap">
-        {arr.map((arr) => {
-          return <Card title={arr.title} price={arr.price} imageUrl={arr.imageUrl}/>
-        })}
+        {arr.map((arr) => (
+          <Card title={arr.title} price={arr.price} imageUrl={arr.imageUrl} favoriteToggleHandler={favoriteToggleHandler}/>
+        ))}
         </div>
       </div>
     </div>
