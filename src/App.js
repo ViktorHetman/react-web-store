@@ -3,17 +3,9 @@ import Card from "./components/Card/Card"
 import Cart from "./components/Cart"
 import Header from "./components/Header"
 
-
-const arr = [
-  {title: 'Nike Blazer Mid Suede', price: 300, imageUrl: '/img/sneakers/1.jpg'},
-  {title: 'Nike Air Max 270', price: 200, imageUrl: '/img/sneakers/2.jpg'},
-  {title: 'Nike Blazer Mid Suede', price: 150, imageUrl: '/img/sneakers/3.jpg'},
-  {title: 'Puma X Aka Boku Future Rider', price: 180, imageUrl: '/img/sneakers/4.jpg'}
-]
-
 function App() {  
   const [cartOpened, setCartOpened] = useState(false)
-
+  const [cardItems, setCardItems] = useState([])
 
   const favoriteToggleHandler = () => {
     console.log('added to marks')
@@ -21,7 +13,7 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened ? <Cart  cartCloseHandler={()=> setCartOpened(false)}/> : null}
+      {cartOpened && <Cart  cartCloseHandler={()=> setCartOpened(false)}/>}
       <Header cartOpenHandler={() =>  setCartOpened(true)}/>
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40"> 
@@ -32,7 +24,7 @@ function App() {
           </div>
         </div>
         <div className="d-flex flex-wrap">
-        {arr.map((arr) => (
+        {cardItems.map((arr) => (
           <Card title={arr.title} price={arr.price} imageUrl={arr.imageUrl} favoriteToggleHandler={favoriteToggleHandler}/>
         ))}
         </div>
