@@ -1,27 +1,23 @@
 import React from 'react'
 
-function Cart({cartCloseHandler}) {
+function Cart({cartCloseHandler, removeItemHandler, cartItems=[]}) {
   return (
     <div className="overlay">
         <div className="cartBar">
         <h2 className="d-flex justify-between mb-30">Cart <img onClick={cartCloseHandler} className="removeBtn cu-p" src="/img/remove.svg" alt="remove-button"/></h2>
+        
         <div className="items">
-        <div className="cartItem d-flex align-center mb-20">
-            <div style={{backgroundImage: 'url(/img/sneakers/1.jpg)'}} className="cartItemImg"></div>
-            <div className="mr-20 flex">
-            <p className="mb-5">Nike Blazer Mid Suede</p>
-            <b>200$</b>
+            {cartItems.map((arr) =>  
+            ( 
+            <div className="cartItem d-flex align-center mb-20">
+                <div style={{backgroundImage: `url(${arr.imageUrl})`}} className="cartItemImg"></div>
+                <div className="mr-20 flex">
+                <p className="mb-5">{arr.title}</p>
+                <b>{arr.price}$</b>
+                </div>
+                <img onClick={removeItemHandler} className="removeBtn" src="/img/remove.svg" alt="remove-button"/>
             </div>
-            <img className="removeBtn" src="/img/remove.svg" alt="remove-button"/>
-        </div>
-        <div className="cartItem d-flex align-center">
-            <div style={{backgroundImage: 'url(/img/sneakers/1.jpg)'}} className="cartItemImg"></div>
-            <div className="mr-20 flex">
-            <p className="mb-5">Nike Blazer Mid Suede</p>
-            <b>200$</b>
-            </div>
-            <img className="removeBtn" src="/img/remove.svg" alt="remove-button"/>
-        </div>
+        ))}
         </div>
     <div className="cartTotal">
         <ul>
