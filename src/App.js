@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Card from "./components/Card/Card"
 import Cart from "./components/Cart"
 import Header from "./components/Header"
@@ -11,6 +12,8 @@ const arr = [
 ]
 
 function App() {  
+  const [cartOpened, setCartOpened] = useState(false)
+
 
   const favoriteToggleHandler = () => {
     console.log('added to marks')
@@ -18,8 +21,8 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      <Cart />
-      <Header />
+      {cartOpened ? <Cart  cartCloseHandler={()=> setCartOpened(false)}/> : null}
+      <Header cartOpenHandler={() =>  setCartOpened(true)}/>
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40"> 
           <h1>All sneakers</h1>
