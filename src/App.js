@@ -4,6 +4,7 @@ import Cart from './components/Cart'
 import Header from './components/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
+import Favorites from './pages/Favorites'
 
 const CARD_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/items'
 const CART_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/cart'
@@ -13,7 +14,7 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const [cardItems, setCardItems] = useState([])
-  //const [favorites, setFavorites] = useState([])
+  //const [favoriteItems, setFavoriteItems] = useState([])
 
   useEffect(() => {
     axios.get(CARD_ITEMS).then((res) => {
@@ -46,7 +47,7 @@ function App() {
       )}
       <Header cartOpenHandler={() => setCartOpened(true)} />
       <Routes>
-        <Route path="/" element={<Home
+        <Route index={true} element={<Home
             cardItems={cardItems}
             searchValue={searchValue}
             setSearchValue={setSearchValue}
@@ -54,8 +55,10 @@ function App() {
             addToggleHandler={addToggleHandler}
           />}>
         </Route>
+        <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
     </div>
+   
   )
 }
 
