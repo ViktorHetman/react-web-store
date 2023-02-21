@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Card from './components/Card/Card'
 import Cart from './components/Cart'
 import Header from './components/Header'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
 
 const CARD_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/items'
 const CART_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/cart'
@@ -23,18 +24,16 @@ function App() {
     })
   }, [])
 
-  const favoriteToggleHandler = () => {
-  
-  }
+  const favoriteToggleHandler = () => {}
 
   const addToggleHandler = (arr) => {
     axios.post(CART_ITEMS, arr)
-    setCartItems(prev =>[...prev, arr])
+    setCartItems((prev) => [...prev, arr])
   }
-  
-  const removeItemHandler = (id) =>{
+
+  const removeItemHandler = (id) => {
     axios.delete(`https://63f3905f864fb1d600195170.mockapi.io/cart/${id}`)
-    setCartItems((prev) => prev.filter(prev => prev.id !== id))
+    setCartItems((prev) => prev.filter((prev) => prev.id !== id))
   }
   return (
     <div className="wrapper clear">
@@ -46,27 +45,16 @@ function App() {
         />
       )}
       <Header cartOpenHandler={() => setCartOpened(true)} />
-      <div className="content p-40">
-        <div className="d-flex align-center justify-between mb-40">
-          <h1>{searchValue ? `Searched by: "${searchValue}"` : 'All shoes'}</h1>
-          <div className="search-block d-flex">
-            <img src="/img/search.svg" alt="Search-icon" />
-            <input onChange={(e) => setSearchValue(e.target.value)} value={searchValue} placeholder="Search..." />
-          </div>
-        </div>
-        <div className="d-flex flex-wrap">
-          {cardItems.filter((item) => item.title.toLowerCase().includes(searchValue)).map((arr) => (
-            <Card
-              key={arr.id}
-              title={arr.title}
-              price={arr.price}
-              imageUrl={arr.imageUrl}
-              favoriteToggleHandler={favoriteToggleHandler}
-              addToggleHandler={(arr) => addToggleHandler(arr)}
-            />
-          ))}
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home
+            cardItems={cardItems}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            favoriteToggleHandler={favoriteToggleHandler}
+            addToggleHandler={addToggleHandler}
+          />}>
+        </Route>
+      </Routes>
     </div>
   )
 }
