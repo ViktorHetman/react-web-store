@@ -8,6 +8,7 @@ const WEB_URL = 'https://63f3905f864fb1d600195170.mockapi.io/items'
 function App() {
   const [cartOpened, setCartOpened] = useState(false)
   const [cartItems, setCartItems] = useState([])
+  const [searchValue, setSearchValue] = useState('')
   const [cardItems, setCardItems] = useState([])
 
   useEffect(() => {
@@ -31,7 +32,6 @@ function App() {
   const removeItemHandler = () =>{
     
   }
-
   return (
     <div className="wrapper clear">
       {cartOpened && (
@@ -44,15 +44,16 @@ function App() {
       <Header cartOpenHandler={() => setCartOpened(true)} />
       <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
-          <h1>All sneakers</h1>
+          <h1>{searchValue ? `Searched by: "${searchValue}"` : 'All shoes'}</h1>
           <div className="search-block d-flex">
             <img src="/img/search.svg" alt="Search-icon" />
-            <input placeholder="Search..." />
+            <input onChange={(e) => setSearchValue(e.target.value)} value={searchValue} placeholder="Search..." />
           </div>
         </div>
         <div className="d-flex flex-wrap">
-          {cardItems.map((arr) => (
+          {cardItems.filter((item) => item.title.toLowerCase().includes(searchValue)).map((arr) => (
             <Card
+              key={arr.id}
               title={arr.title}
               price={arr.price}
               imageUrl={arr.imageUrl}
