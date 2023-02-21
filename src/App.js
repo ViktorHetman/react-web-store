@@ -12,6 +12,7 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const [cardItems, setCardItems] = useState([])
+  //const [favorites, setFavorites] = useState([])
 
   useEffect(() => {
     axios.get(CARD_ITEMS).then((res) => {
@@ -23,7 +24,7 @@ function App() {
   }, [])
 
   const favoriteToggleHandler = () => {
-    console.log('added to marks')
+  
   }
 
   const addToggleHandler = (arr) => {

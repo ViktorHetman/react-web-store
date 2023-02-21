@@ -16,6 +16,9 @@ function Header({cartOpenHandler}) {
           <span>100$</span>
         </li>
         <li className="align-center">
+          <img className="mr-20 cu-p" width={18} height={18} src="/img/favorite-page.svg" alt="favorite-page" />
+        </li>
+        <li className="align-center">
           <img width={18} height={18} src="/img/user.png" alt="user" />
         </li>
       </ul>

@@ -9,16 +9,21 @@ function Card({
   addToggleHandler,
 }) {
   const [isAdded, setIsAdded] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
 
   const addItemHandler = () => {
     addToggleHandler({title,price,imageUrl})
     setIsAdded(!isAdded)
   }
 
+  const setFavoriteHandler = () => {
+    setIsFavorite(!isFavorite)
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.favorite} onClick={favoriteToggleHandler}>
-        <img src="img/unliked.svg" alt="unliked-icon" />
+        <img src={isFavorite ? "img/liked.svg" : "img/unliked.svg"} onClick={setFavoriteHandler} alt="unliked-icon" />
       </div>
       <img width={133} height={122} src={imageUrl} alt="sneakers-1" />
       <h5>{title}</h5>
