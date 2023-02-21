@@ -4,8 +4,8 @@ import Card from './components/Card/Card'
 import Cart from './components/Cart'
 import Header from './components/Header'
 
-const GET_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/items'
-const POST_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/cart'
+const CARD_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/items'
+const CART_ITEMS = 'https://63f3905f864fb1d600195170.mockapi.io/cart'
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false)
@@ -14,8 +14,11 @@ function App() {
   const [cardItems, setCardItems] = useState([])
 
   useEffect(() => {
-    axios.get(GET_ITEMS).then((res) => {
+    axios.get(CARD_ITEMS).then((res) => {
       setCardItems(res.data)
+    })
+    axios.get(CART_ITEMS).then((res) => {
+      setCartItems(res.data)
     })
   }, [])
 
@@ -24,7 +27,7 @@ function App() {
   }
 
   const addToggleHandler = (arr) => {
-    axios.post(POST_ITEMS, arr)
+    axios.post(CART_ITEMS, arr)
     setCartItems(prev =>[...prev, arr])
   }
   
