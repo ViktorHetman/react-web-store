@@ -15,7 +15,7 @@ function Cart({cartCloseHandler, removeItemHandler, cartItems=[]}) {
                 <p className="mb-5">{arr.title}</p>
                 <b>{arr.price}$</b>
                 </div>
-                <img onClick={removeItemHandler} className="removeBtn" src="/img/remove.svg" alt="remove-button"/>
+                <img onClick={() => removeItemHandler(arr.id)} className="removeBtn" src="/img/remove.svg" alt="remove-button"/>
             </div>
         ))}
         </div>

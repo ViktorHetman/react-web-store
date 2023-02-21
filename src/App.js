@@ -31,8 +31,9 @@ function App() {
     setCartItems(prev =>[...prev, arr])
   }
   
-  const removeItemHandler = () =>{
-    
+  const removeItemHandler = (id) =>{
+    axios.delete(`https://63f3905f864fb1d600195170.mockapi.io/cart/${id}`)
+    setCartItems((prev) => prev.filter(prev => prev.id !== id))
   }
   return (
     <div className="wrapper clear">
